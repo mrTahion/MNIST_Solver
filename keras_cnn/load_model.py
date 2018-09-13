@@ -1,6 +1,7 @@
 import numpy as np
 from keras.preprocessing import image
 from keras.models import model_from_json
+import os.path
 
 # Loading  model
 json_file = open("saved_model.json", "r")
@@ -18,15 +19,18 @@ while img_path != '.exit':
 	img_path = raw_input('Enter the file path, or ".exit" for exit: ')
 	if img_path == '.exit':
 		break
-		
-	img = image.load_img(img_path, target_size=(28, 28), grayscale=True)
+	elif (os.path.exists(img_path)):		
+		img = image.load_img(img_path, target_size=(28, 28), grayscale=True)
 
-	# Img to np array
-	x = image.img_to_array(img)
+		# Img to np array
+		x = image.img_to_array(img)
 
-	x /= 255
-	x = np.expand_dims(x, axis=0)
-	# Make pred
-	prediction = loaded_model.predict(x)
+		x /= 255
+		x = np.expand_dims(x, axis=0)
+		# Make pred
+		prediction = loaded_model.predict(x)
 
-	print("Digit {}({:.5%})".format(np.argmax(prediction), np.amax(prediction[0])))
+		print("Digit {}({:.5%})".format(np.argmax(prediction), np.amax(prediction[0])))
+
+	else:
+		print("No such file or directory")
