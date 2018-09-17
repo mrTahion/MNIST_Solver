@@ -80,7 +80,7 @@ datagen = ImageDataGenerator(
 datagen.fit(X_train)
 
 batch_size = 256
-epochs = 92
+epochs = 64
 
 # Fitting model, using mnist.test dataset for val_data
 history = model.fit_generator(datagen.flow(X_train,Y_train, batch_size = batch_size),
