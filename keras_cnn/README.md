@@ -20,3 +20,9 @@
 	```
 	Enter the file path, or ".exit" for exit: .exit
 	```
+
+### P.S.
+
+	```
+	val_loss: 0.0131 - val_acc: 0.9955
+	```
